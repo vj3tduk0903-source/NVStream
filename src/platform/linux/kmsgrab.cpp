@@ -2441,7 +2441,17 @@ namespace platf {
 
     kms::card_descriptors = std::move(cds);
 
-    BOOST_LOG(debug) << "Final KMS display_names return list: " << (display_names | std::views::join_with(' ') | std::ranges::to<std::string>());
+    // std::ranges::to không có sẵn trên GCC 13, tự join để in debug
+    BOOST_LOG(debug) << "Final KMS display_names return list: " << [display_names]() {
+      std::string joined;
+      for (auto it = display_names.begin(); it != display_names.end(); ++it) {
+        if (it != display_names.begin()) {
+          joined += ' ';
+        }
+        joined += *it;
+      }
+      return joined;
+    }();
     return display_names;
   }
 

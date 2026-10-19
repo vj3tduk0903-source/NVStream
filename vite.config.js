@@ -38,8 +38,8 @@ const emitTrayIconsPlugin = {
     buildStart() {
         this.emitFile({
             type: 'asset',
-            fileName: 'images/logo-sunshine.svg',
-            source: fs.readFileSync(resolve(projectRoot, 'sunshine.svg')),
+            fileName: 'images/logo-nvstream.svg',
+            source: fs.readFileSync(resolve(projectRoot, 'nvstream.svg')),
         });
 
         const virtualHidIcon = resolve(projectRoot, 'third-party/libvirtualhid/libvirtualhid.svg');

@@ -7,28 +7,28 @@ modprobe uhid
 # Homebrew installs host integration files inside its Cellar. Copy them to
 # host directories that systemd-udevd and systemd-modules-load monitor.
 script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
-packaged_udev_rule="$script_dir/../lib/udev/rules.d/60-sunshine.rules"
-packaged_modules_file="$script_dir/../lib/modules-load.d/60-sunshine.conf"
+packaged_udev_rule="$script_dir/../lib/udev/rules.d/60-nvstream.rules"
+packaged_modules_file="$script_dir/../lib/modules-load.d/60-nvstream.conf"
 if [ -f "$packaged_udev_rule" ]; then
-  echo "Installing Sunshine udev rules."
-  install -Dm644 "$packaged_udev_rule" /etc/udev/rules.d/60-sunshine.rules
+  echo "Installing NVStream udev rules."
+  install -Dm644 "$packaged_udev_rule" /etc/udev/rules.d/60-nvstream.rules
 fi
 if [ -f "$packaged_modules_file" ]; then
-  echo "Installing Sunshine modules-load configuration."
-  install -Dm644 "$packaged_modules_file" /etc/modules-load.d/60-sunshine.conf
+  echo "Installing NVStream modules-load configuration."
+  install -Dm644 "$packaged_modules_file" /etc/modules-load.d/60-nvstream.conf
 fi
 
-# Ensure Sunshine can grab images from KMS
+# Ensure NVStream can grab images from KMS
 path_to_setcap=$(which setcap)
-if [ -x "$script_dir/sunshine" ]; then
-  path_to_sunshine=$(readlink -f "$script_dir/sunshine")
+if [ -x "$script_dir/nvstream" ]; then
+  path_to_nvstream=$(readlink -f "$script_dir/nvstream")
 else
-  path_to_sunshine=$(readlink -f "$(which sunshine)")
+  path_to_nvstream=$(readlink -f "$(which nvstream)")
 fi
 if [ -x "$path_to_setcap" ] ; then
-  echo "Setting CAP_SYS_ADMIN, CAP_SYS_NICE capabilities on Sunshine binary."
-  echo "$path_to_setcap cap_sys_admin,cap_sys_nice+p $path_to_sunshine"
-  $path_to_setcap cap_sys_admin,cap_sys_nice+p "$path_to_sunshine"
+  echo "Setting CAP_SYS_ADMIN, CAP_SYS_NICE capabilities on NVStream binary."
+  echo "$path_to_setcap cap_sys_admin,cap_sys_nice+p $path_to_nvstream"
+  $path_to_setcap cap_sys_admin,cap_sys_nice+p "$path_to_nvstream"
   echo "CAP_SYS_ADMIN, CAP_SYS_NICE capabilities set on Sunshine binary."
 else
   echo "error: setcap not found or not executable."
