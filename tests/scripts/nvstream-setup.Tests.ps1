@@ -226,7 +226,7 @@ Describe "Executable wrappers" {
         }
     }
 
-    It "passes the packaged Sunshine path to the common runner" {
+    It "passes the packaged NVStream path to the common runner" {
         $script:RootDir = $TestDrive
 
         $result = Invoke-SunshineIfExist `

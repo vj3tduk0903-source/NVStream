@@ -81,7 +81,7 @@ file(COPY "${CMAKE_CURRENT_LIST_DIR}/wix_resources/"
         DESTINATION "${WIX_BUILD_PARENT_DIRECTORY}/")
 
 set(CPACK_WIX_EXTRA_SOURCES
-        "${WIX_BUILD_PARENT_DIRECTORY}/sunshine-installer.wxs"
+        "${WIX_BUILD_PARENT_DIRECTORY}/nvstream-installer.wxs"
 )
 set(CPACK_WIX_PATCH_FILE
         "${WIX_BUILD_PARENT_DIRECTORY}/patch.xml"

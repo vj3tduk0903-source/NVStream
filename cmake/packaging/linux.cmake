@@ -35,7 +35,7 @@ else()
         set(SUNSHINE_UDEV_RULES_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/udev/rules.d")
         message(WARNING
                 "Could not determine the host udev rules directory; "
-                "installing Sunshine rules to ${SUNSHINE_UDEV_RULES_INSTALL_DIR}")
+                "installing NVStream rules to ${SUNSHINE_UDEV_RULES_INSTALL_DIR}")
     endif()
     install(FILES "${SUNSHINE_SOURCE_ASSETS_DIR}/linux/misc/60-nvstream.rules"
             DESTINATION "${SUNSHINE_UDEV_RULES_INSTALL_DIR}")
