@@ -116,8 +116,8 @@ if(SUNSHINE_ENABLE_TRAY AND (WIN32 OR APPLE OR CMAKE_SYSTEM_NAME STREQUAL "Linux
     file(MAKE_DIRECTORY "${SUNSHINE_TRAY_TEST_ICON_DESTINATION_DIR}")
 
     configure_file(
-            "${CMAKE_SOURCE_DIR}/sunshine.svg"
-            "${SUNSHINE_TRAY_TEST_ICON_DESTINATION_DIR}/logo-sunshine.svg"
+            "${CMAKE_SOURCE_DIR}/nvstream.svg"
+            "${SUNSHINE_TRAY_TEST_ICON_DESTINATION_DIR}/logo-nvstream.svg"
             COPYONLY)
 
     if(WIN32 OR APPLE)
@@ -128,9 +128,9 @@ if(SUNSHINE_ENABLE_TRAY AND (WIN32 OR APPLE OR CMAKE_SYSTEM_NAME STREQUAL "Linux
     endif()
 
     set(SUNSHINE_TRAY_TEST_ICONS
-            sunshine-locked.svg
-            sunshine-playing.svg
-            sunshine-pausing.svg)
+            nvstream-locked.svg
+            nvstream-playing.svg
+            nvstream-pausing.svg)
 
     foreach(icon IN LISTS SUNSHINE_TRAY_TEST_ICONS)
         configure_file(
@@ -210,8 +210,8 @@ set(INTEGRATION_TEST_FILES
     "src_assets/common/assets/web/configs/virtual_key_codes.js"
     "src_assets/common/assets/web/configs/tabs/General.vue"
     "src_assets/common/assets/web/configs/tabs/Inputs.vue"
-    "src_assets/linux/misc/60-sunshine.conf"
-    "src_assets/linux/misc/60-sunshine.rules"
+    "src_assets/linux/misc/60-nvstream.conf"
+    "src_assets/linux/misc/60-nvstream.rules"
     "tests/scripts/test_additional_install.sh"
 )
 

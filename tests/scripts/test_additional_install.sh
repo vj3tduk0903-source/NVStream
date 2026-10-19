@@ -16,13 +16,13 @@ trap 'rm -rf -- "$test_root"' EXIT HUP INT TERM
 
 mkdir -p "$test_root/bin" "$test_root/fixtures" "$test_root/host/modules-load.d" "$test_root/host/udev/rules.d"
 # Match the LF files packaged on Linux when testing a Windows checkout in MSYS2.
-tr -d '\r' < "$project_root/src_assets/linux/misc/60-sunshine.conf" > "$test_root/fixtures/60-sunshine.conf"
-tr -d '\r' < "$project_root/src_assets/linux/misc/60-sunshine.rules" > "$test_root/fixtures/60-sunshine.rules"
+tr -d '\r' < "$project_root/src_assets/linux/misc/60-nvstream.conf" > "$test_root/fixtures/60-nvstream.conf"
+tr -d '\r' < "$project_root/src_assets/linux/misc/60-nvstream.rules" > "$test_root/fixtures/60-nvstream.rules"
 printf '%s\n' '[Service]' > "$test_root/fixtures/service"
 : > "$test_root/calls"
 
 if [ "$scenario" = literal ]; then
-  for filename in 60-sunshine.conf 60-sunshine.rules; do
+  for filename in 60-nvstream.conf 60-nvstream.rules; do
     cat >> "$test_root/fixtures/$filename" <<'EOF'
 # Literal shell syntax: ' "%s\n" $(touch substitution-ran) `touch backtick-ran`
 # Backslashes: \c \n; percent signs: %s %b; trailing apostrophe: '
@@ -33,12 +33,12 @@ fi
 cat > "$test_root/bin/cat" <<'EOF'
 #!/bin/sh
 case "$1" in
-  /app/share/sunshine/modules-load.d/60-sunshine.conf)
-    exec /bin/cat "$TEST_ROOT/fixtures/60-sunshine.conf"
+  /app/share/sunshine/modules-load.d/60-nvstream.conf)
+    exec /bin/cat "$TEST_ROOT/fixtures/60-nvstream.conf"
     ;;
-  /app/share/sunshine/udev/rules.d/60-sunshine.rules)
+  /app/share/sunshine/udev/rules.d/60-nvstream.rules)
     [ "$TEST_FAILURE" != missing ] || exit 7
-    exec /bin/cat "$TEST_ROOT/fixtures/60-sunshine.rules"
+    exec /bin/cat "$TEST_ROOT/fixtures/60-nvstream.rules"
     ;;
   *) exit 1 ;;
 esac
@@ -58,14 +58,14 @@ shift 2
 if [ "$1" = sh ]; then
   [ "$2" = -c ] || exit 1
   case "$3" in
-    */etc/modules-load.d/60-sunshine.conf*) operation=modules ;;
-    */etc/udev/rules.d/60-sunshine.rules*) operation=rules ;;
+    */etc/modules-load.d/60-nvstream.conf*) operation=modules ;;
+    */etc/udev/rules.d/60-nvstream.rules*) operation=rules ;;
     *) exit 1 ;;
   esac
   printf '%s\n' "write-$operation" >> "$TEST_ROOT/calls"
   [ "$TEST_FAILURE" != "$operation" ] || exit 7
   # Redirect only the fixed host destination into the test directory.
-  host_command=$(printf '%s' "$3" | sed "s|/etc/modules-load.d/60-sunshine.conf|$TEST_ROOT/host/modules-load.d/60-sunshine.conf|g; s|/etc/udev/rules.d/60-sunshine.rules|$TEST_ROOT/host/udev/rules.d/60-sunshine.rules|g")
+  host_command=$(printf '%s' "$3" | sed "s|/etc/modules-load.d/60-nvstream.conf|$TEST_ROOT/host/modules-load.d/60-nvstream.conf|g; s|/etc/udev/rules.d/60-nvstream.rules|$TEST_ROOT/host/udev/rules.d/60-nvstream.rules|g")
   shift 3
   exec /bin/sh -c "$host_command" "$@"
 fi
@@ -100,8 +100,8 @@ fail() {
 case "$scenario" in
   success|literal)
     [ "$status" -eq 0 ] || fail "Installer failed: $status"
-    cmp "$test_root/fixtures/60-sunshine.conf" "$test_root/host/modules-load.d/60-sunshine.conf" || fail 'Module configuration was changed.'
-    cmp "$test_root/fixtures/60-sunshine.rules" "$test_root/host/udev/rules.d/60-sunshine.rules" || fail 'Udev rules were changed.'
+    cmp "$test_root/fixtures/60-nvstream.conf" "$test_root/host/modules-load.d/60-nvstream.conf" || fail 'Module configuration was changed.'
+    cmp "$test_root/fixtures/60-nvstream.rules" "$test_root/host/udev/rules.d/60-nvstream.rules" || fail 'Udev rules were changed.'
     grep -q '^Virtual input permissions have been updated\.$' "$test_root/output" || fail 'Completion message is missing.'
     expected_calls=8
     ;;
