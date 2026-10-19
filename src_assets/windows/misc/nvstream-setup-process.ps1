@@ -207,14 +207,14 @@ function Invoke-ScriptIfExist {
         -FailureTarget $ScriptPath
 }
 
-# Execute sunshine.exe with arguments if it exists.
-function Invoke-SunshineIfExist {
+# Execute NVStream.exe with arguments if it exists.
+function Invoke-NVStreamIfExist {
     <#
     .SYNOPSIS
-    Runs the packaged Sunshine executable when it exists.
+    Runs the packaged NVStream executable when it exists.
 
     .PARAMETER Arguments
-    Arguments passed to Sunshine.
+    Arguments passed to NVStream.
 
     .PARAMETER Description
     An optional description logged before execution.
@@ -228,12 +228,12 @@ function Invoke-SunshineIfExist {
         [string]$Emoji = "🔧"
     )
 
-    $SunshinePath = Join-Path $RootDir "sunshine.exe"
+    $SunshinePath = Join-Path $RootDir "NVStream.exe"
     return Invoke-ExecutableIfExist `
         -ExecutablePath $SunshinePath `
         -Arguments $Arguments `
         -Description $Description `
         -Emoji $Emoji `
-        -ExecutableName "Sunshine" `
+        -ExecutableName "NVStream" `
         -MissingTarget "executable"
 }

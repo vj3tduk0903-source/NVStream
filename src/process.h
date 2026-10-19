@@ -42,7 +42,7 @@ namespace proc {
 
   /**
    * pre_cmds -- guaranteed to be executed unless any of the commands fail.
-   * detached -- commands detached from Sunshine
+   * detached -- commands detached from NVStream
    * cmd -- Runs indefinitely until:
    *    No session is running and a different set of commands it to be executed
    *    Command exits
@@ -77,7 +77,7 @@ namespace proc {
     std::string id;  ///< Stable identifier for the configured application.
     bool elevated;  ///< Whether the process should be launched elevated.
     bool auto_detach;  ///< Whether the process should detach automatically.
-    bool wait_all;  ///< Whether Sunshine waits for all child processes.
+    bool wait_all;  ///< Whether NVStream waits for all child processes.
     std::chrono::seconds exit_timeout;  ///< Exit timeout.
   };
 

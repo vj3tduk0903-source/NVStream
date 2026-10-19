@@ -614,7 +614,7 @@ namespace confighttp {
 
     const SimpleWeb::CaseInsensitiveMultimap headers {
       {"Content-Type", "application/json"},
-      {"WWW-Authenticate", R"(Basic realm="Sunshine Gamestream Host", charset="UTF-8")"},
+      {"WWW-Authenticate", R"(Basic realm="NVStream Gamestream Host", charset="UTF-8")"},
       {"X-Frame-Options", "DENY"},
       {"Content-Security-Policy", "frame-ancestors 'none';"}
     };
@@ -893,7 +893,7 @@ namespace confighttp {
       if (query_it == query_params.end()) {
         auto address = net::addr_to_normalized_string(request->remote_endpoint().address());
         BOOST_LOG(error) << "Web UI: ["sv << address << "] -- CSRF protection blocked request from origin: "sv << blocked_origin;
-        BOOST_LOG(error) << "Web UI: To allow this origin, add it to the 'csrf_allowed_origins' option in your Sunshine configuration"sv;
+        BOOST_LOG(error) << "Web UI: To allow this origin, add it to the 'csrf_allowed_origins' option in your NVStream configuration"sv;
         bad_request(response, "Missing CSRF token");
         return false;
       }
@@ -972,7 +972,7 @@ namespace confighttp {
   void getFaviconImage(const resp_https_t &response, const req_https_t &request) {
     print_req(request);
 
-    std::ifstream in(WEB_DIR "images/sunshine.ico", std::ios::binary);
+    std::ifstream in(WEB_DIR "images/nvstream.ico", std::ios::binary);
     SimpleWeb::CaseInsensitiveMultimap headers;
     headers.emplace("Content-Type", "image/x-icon");
     headers.emplace("X-Frame-Options", "DENY");
@@ -990,7 +990,7 @@ namespace confighttp {
   void getSunshineLogoImage(const resp_https_t &response, const req_https_t &request) {
     print_req(request);
 
-    std::ifstream in(WEB_DIR "images/logo-sunshine-45.png", std::ios::binary);
+    std::ifstream in(WEB_DIR "images/logo-nvstream-45.png", std::ios::binary);
     SimpleWeb::CaseInsensitiveMultimap headers;
     headers.emplace("Content-Type", "image/png");
     headers.emplace("X-Frame-Options", "DENY");
@@ -1092,7 +1092,7 @@ namespace confighttp {
       std::string content = file_handler::read_file(config::stream.file_apps.c_str());
       nlohmann::json file_tree = nlohmann::json::parse(content);
 
-      // Legacy versions of Sunshine used strings for boolean and integers, let's convert them
+      // Legacy versions of NVStream used strings for boolean and integers, let's convert them
       // List of keys to convert to boolean
       const std::vector<std::string> boolean_keys = {
         "exclude-global-prep-cmd",
@@ -2199,7 +2199,7 @@ namespace confighttp {
    * @brief Activate, validate, or deactivate the libvirtualhid machine license.
    *
    * Submitted license keys are used only for the synchronous broker call. They are
-   * never logged or saved in Sunshine's configuration, and extracted mutable copies
+   * never logged or saved in NVStream's configuration, and extracted mutable copies
    * are overwritten before the handler returns.
    *
    * @param response HTTP response object.
@@ -2513,8 +2513,8 @@ namespace confighttp {
     server.resource["^/api/virtual-input/status$"]["GET"] = getVirtualInputStatus;
 
     // static/dynamic resources
-    server.resource["^/images/sunshine.ico$"]["GET"] = getFaviconImage;
-    server.resource["^/images/logo-sunshine-45.png$"]["GET"] = getSunshineLogoImage;
+    server.resource["^/images/nvstream.ico$"]["GET"] = getFaviconImage;
+    server.resource["^/images/logo-nvstream-45.png$"]["GET"] = getSunshineLogoImage;
     server.resource["^/assets\\/.+$"]["GET"] = getAsset;
 
     server.config.reuse_address = true;

@@ -252,7 +252,7 @@ namespace proc {
       if (ec) {
         BOOST_LOG(error) << "Couldn't run ["sv << command << "]: System: "sv << ec.message();
         // We don't want any prep commands failing launch of the desktop.
-        // This is to prevent the issue where users reboot their PC and need to log in with Sunshine.
+        // This is to prevent the issue where users reboot their PC and need to log in with NVStream.
         // permission_denied is typically returned when the user impersonation fails, which can happen when user is not signed in yet.
         if (!(_app.cmd.empty() && ec == std::errc::permission_denied)) {
           return -1;

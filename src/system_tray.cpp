@@ -9,22 +9,22 @@
    * @def TRAY_ICON
    * @brief Path to the default system tray icon.
    */
-  #define TRAY_ICON WEB_DIR "images/logo-sunshine.svg"
+  #define TRAY_ICON WEB_DIR "images/logo-nvstream.svg"
   /**
    * @def TRAY_ICON_PLAYING
    * @brief Path to the system tray icon used while streaming.
    */
-  #define TRAY_ICON_PLAYING WEB_DIR "images/sunshine-playing.svg"
+  #define TRAY_ICON_PLAYING WEB_DIR "images/nvstream-playing.svg"
   /**
    * @def TRAY_ICON_PAUSING
    * @brief Path to the system tray icon used while streaming is paused.
    */
-  #define TRAY_ICON_PAUSING WEB_DIR "images/sunshine-pausing.svg"
+  #define TRAY_ICON_PAUSING WEB_DIR "images/nvstream-pausing.svg"
   /**
    * @def TRAY_ICON_LOCKED
    * @brief Path to the system tray icon used for pairing requests.
    */
-  #define TRAY_ICON_LOCKED WEB_DIR "images/sunshine-locked.svg"
+  #define TRAY_ICON_LOCKED WEB_DIR "images/nvstream-locked.svg"
   /**
    * @def TRAY_ICON_VIRTUALHID
    * @brief Path to the Virtual HID Broker notification icon.
@@ -144,7 +144,7 @@ namespace system_tray {
     /**
      * @brief Access persistent storage for the Virtual HID Broker benefits menu.
      *
-     * The tray C API requires a mutable submenu pointer even though Sunshine
+     * The tray C API requires a mutable submenu pointer even though NVStream
      * treats these entries as immutable.
      *
      * @return Persistent Virtual HID Broker benefits menu storage.
@@ -154,7 +154,7 @@ namespace system_tray {
         {.text = "Xbox One, Xbox Series, DualSense (DS5), Switch Pro, and Generic", .disabled = 1},
         {.text = "Raw Input keyboard and mouse for physical-style input", .disabled = 1},
         {.text = "Motion, touchpads, LEDs, and adaptive triggers where supported", .disabled = 1},
-        {.text = "Actively developed and supported by LizardByte", .disabled = 1},
+        {.text = "NVStream, based on Sunshine (LizardByte)", .disabled = 1},
         {},
       }};
       return benefits_menu;
@@ -298,7 +298,7 @@ namespace system_tray {
     .menu =
       (struct tray_menu[]) {
         // Tray menu labels currently use the project's English source strings.
-        {.text = "Open Sunshine", .cb = tray_open_ui_cb},
+        {.text = "Open NVStream", .cb = tray_open_ui_cb},
         {.text = "-"},
   #if defined(_WIN32) || defined(__APPLE__)
         {.text = "Virtual HID Broker", .submenu = virtualhid_license_menu.data()},
@@ -568,7 +568,7 @@ namespace system_tray {
     const auto displayed_version = version.empty() ? "unknown" : std::format("v{}", version);
     auto &notification_text = virtualhid_driver_notification_text_storage();
     notification_text = std::format(
-      "Installed Virtual HID Broker {} is not supported by this version of Sunshine. Supported versions: {}. Restart Sunshine after updating. Click for instructions.",
+      "Installed Virtual HID Broker {} is not supported by this version of NVStream. Supported versions: {}. Restart NVStream after updating. Click for instructions.",
       displayed_version,
       supported_versions
     );

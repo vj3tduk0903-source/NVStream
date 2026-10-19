@@ -154,7 +154,7 @@
     sanitize: false
   });
 
-  console.log("Hello, Sunshine!")
+  console.log("Hello, NVStream!")
   export default {
     components: {
       Navbar,

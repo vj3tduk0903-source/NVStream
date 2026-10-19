@@ -30,7 +30,7 @@ jobs:
           $config.TestResult.OutputFormat = "JUnitXml"
           $config.TestResult.OutputPath = "./build/tests/test_results.xml"
           $config.CodeCoverage.Enabled = $true
-          $config.CodeCoverage.Path = "./src_assets/windows/misc/sunshine-setup-process.ps1"
+          $config.CodeCoverage.Path = "./src_assets/windows/misc/nvstream-setup-process.ps1"
           $config.CodeCoverage.OutputFormat = "Cobertura"
           $config.CodeCoverage.OutputPath = "./build/coverage.xml"
 

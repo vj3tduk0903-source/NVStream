@@ -113,11 +113,11 @@ namespace nvhttp {
    * @brief Enumerates supported pAIR PHASE options.
    */
   enum class PAIR_PHASE {
-    NONE,  ///< Sunshine is not in a pairing phase
-    GETSERVERCERT,  ///< Sunshine is in the get server certificate phase
-    CLIENTCHALLENGE,  ///< Sunshine is in the client challenge phase
-    SERVERCHALLENGERESP,  ///< Sunshine is in the server challenge response phase
-    CLIENTPAIRINGSECRET  ///< Sunshine is in the client pairing secret phase
+    NONE,  ///< NVStream is not in a pairing phase
+    GETSERVERCERT,  ///< NVStream is in the get server certificate phase
+    CLIENTCHALLENGE,  ///< NVStream is in the client challenge phase
+    SERVERCHALLENGERESP,  ///< NVStream is in the server challenge response phase
+    CLIENTPAIRINGSECRET  ///< NVStream is in the client pairing secret phase
   };
 
   /**

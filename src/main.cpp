@@ -323,7 +323,7 @@ int main(int argc, char *argv[]) {
     session_monitor_join_thread_promise.set_value_at_thread_exit();
 
     WNDCLASSA wnd_class {};
-    wnd_class.lpszClassName = "SunshineSessionMonitorClass";
+    wnd_class.lpszClassName = "NVStreamSessionMonitorClass";
     wnd_class.lpfnWndProc = SessionMonitorWindowProc;
     if (!RegisterClassA(&wnd_class)) {
       session_monitor_hwnd_promise.set_value(nullptr);
@@ -334,7 +334,7 @@ int main(int argc, char *argv[]) {
     auto wnd = CreateWindowExA(
       0,
       wnd_class.lpszClassName,
-      "Sunshine Session Monitor Window",
+      "NVStream Session Monitor Window",
       0,
       CW_USEDEFAULT,
       CW_USEDEFAULT,
@@ -536,7 +536,7 @@ int main(int argc, char *argv[]) {
     permission_watcher = std::jthread([](std::stop_token stop) {
       while (!stop.stop_requested()) {
         if (platf::required_permissions_granted(platf::get_permission_statuses())) {
-          BOOST_LOG(info) << "Required permissions granted; restarting Sunshine"sv;
+          BOOST_LOG(info) << "Required permissions granted; restarting NVStream"sv;
           platf::restart();
           return;
         }

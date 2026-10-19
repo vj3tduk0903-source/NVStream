@@ -13,7 +13,7 @@
 
 namespace {
 
-  const auto sunshine_program_data_folder = "Sunshine";
+  const auto sunshine_program_data_folder = "NVStream";
   const auto nvprefs_undo_file_name = "nvprefs_undo.json";
 
 }  // namespace

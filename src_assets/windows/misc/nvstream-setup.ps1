@@ -1,6 +1,6 @@
 ﻿# Sunshine Setup Script
 # This script orchestrates the installation and uninstallation of Sunshine
-# Usage: sunshine-setup.ps1 -Action [install|uninstall] [-Silent]
+# Usage: nvstream-setup.ps1 -Action [install|uninstall] [-Silent]
 
 param(
     [Parameter(Mandatory=$false)]
@@ -274,7 +274,7 @@ if (-not (Test-Path $logDir)) {
 # Store LogPath in script scope for logging functions
 $script:LogPath = $LogPath
 
-. (Join-Path $ScriptDir "sunshine-setup-process.ps1")
+. (Join-Path $ScriptDir "nvstream-setup-process.ps1")
 
 # Main script logic
 Write-Information ""
@@ -483,7 +483,7 @@ if ($Action -eq "install") {
         -Activity "Uninstalling Sunshine" `
         -Status "Restoring NVIDIA settings" `
         -PercentComplete (($currentStep / $totalSteps) * 100)
-    Invoke-SunshineIfExist `
+    Invoke-NVStreamIfExist `
         -Arguments "--restore-nvprefs-undo" `
         -Description "Restoring NVIDIA preferences" `
         -Emoji "🎮"

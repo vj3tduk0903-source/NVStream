@@ -4,14 +4,14 @@ setlocal EnableDelayedExpansion
 rem Check if parameter is provided
 if "%~1"=="" (
     echo Usage: %0 [add^|remove]
-    echo   add    - Adds Sunshine directories to system PATH
-    echo   remove - Removes Sunshine directories from system PATH
+    echo   add    - Adds NVStream directories to system PATH
+    echo   remove - Removes NVStream directories from system PATH
     exit /b 1
 )
 
 rem Get sunshine root directory
 for %%I in ("%~dp0\..") do set "ROOT_DIR=%%~fI"
-echo Sunshine root directory: !ROOT_DIR!
+echo NVStream root directory: !ROOT_DIR!
 
 rem Define directories to add to path
 set "PATHS_TO_MANAGE[0]=!ROOT_DIR!"
@@ -50,9 +50,9 @@ if /i "%~1"=="add" (
         rem Keep it before /d so the installer never waits for overwrite confirmation.
         reg add "%KEY_NAME%" /v "%VALUE_NAME%" /t REG_EXPAND_SZ /f /d "!NEW_PATH!"
         if !ERRORLEVEL!==0 (
-            echo Successfully added Sunshine directories to PATH
+            echo Successfully added NVStream directories to PATH
         ) else (
-            echo Failed to add Sunshine directories to PATH
+            echo Failed to add NVStream directories to PATH
         )
     ) else (
         echo No changes needed to PATH
@@ -100,9 +100,9 @@ if /i "%~1"=="remove" (
         rem Keep it before /d so the installer never waits for overwrite confirmation.
         reg add "%KEY_NAME%" /v "%VALUE_NAME%" /t REG_EXPAND_SZ /f /d "!CURRENT_PATH!"
         if !ERRORLEVEL!==0 (
-            echo Successfully removed Sunshine directories from PATH
+            echo Successfully removed NVStream directories from PATH
         ) else (
-            echo Failed to remove Sunshine directories from PATH
+            echo Failed to remove NVStream directories from PATH
         )
     ) else (
         echo No changes needed to PATH

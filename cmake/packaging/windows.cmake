@@ -14,12 +14,12 @@ install(TARGETS dxgi-info RUNTIME DESTINATION "tools" COMPONENT dxgi)
 install(TARGETS audio-info RUNTIME DESTINATION "tools" COMPONENT audio)
 
 # Mandatory tools
-install(TARGETS sunshinesvc RUNTIME DESTINATION "tools" COMPONENT application)
+install(TARGETS nvstreamsvc RUNTIME DESTINATION "tools" COMPONENT application)
 
 # Mandatory scripts
 install(FILES
-        "${SUNSHINE_SOURCE_ASSETS_DIR}/windows/misc/sunshine-setup.ps1"
-        "${SUNSHINE_SOURCE_ASSETS_DIR}/windows/misc/sunshine-setup-process.ps1"
+        "${SUNSHINE_SOURCE_ASSETS_DIR}/windows/misc/nvstream-setup.ps1"
+        "${SUNSHINE_SOURCE_ASSETS_DIR}/windows/misc/nvstream-setup-process.ps1"
         DESTINATION "scripts"
         COMPONENT assets)
 install(DIRECTORY "${SUNSHINE_SOURCE_ASSETS_DIR}/windows/misc/service/"
@@ -57,7 +57,7 @@ cmake_path(CONVERT "${SUNSHINE_SOURCE_ASSETS_DIR}/windows/assets/shaders"
 cmake_path(CONVERT "${CMAKE_BINARY_DIR}/assets/shaders" TO_NATIVE_PATH_LIST shaders_in_build_dest_native)
 execute_process(COMMAND cmd.exe /c mklink /J "${shaders_in_build_dest_native}" "${shaders_in_build_src_native}")
 
-set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}\\\\sunshine.ico")
+set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}\\\\nvstream.ico")
 
 # The name of the directory that will be created in C:/Program files/
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "${CPACK_PACKAGE_NAME}")

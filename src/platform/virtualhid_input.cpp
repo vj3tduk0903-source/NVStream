@@ -699,7 +699,7 @@ namespace platf::virtualhid {
 
     const auto &selection = profile_for_metadata(metadata);
     auto profile = selection.profile();
-    profile.name = std::format("Sunshine {}", profile.name);
+    profile.name = std::format("NVStream {}", profile.name);
     if (config::input.gamepad != "auto"sv) {
       BOOST_LOG(info) << "Gamepad "sv << id.globalIndex << " will be "sv << profile.name << " (manual selection)"sv;
     } else {

@@ -1,7 +1,7 @@
 BeforeAll {
     $sourcePath = Join-Path `
         $PSScriptRoot `
-        "..\..\src_assets\windows\misc\sunshine-setup-process.ps1"
+        "..\..\src_assets\windows\misc\nvstream-setup-process.ps1"
 
     function Write-LogMessage {
         param(

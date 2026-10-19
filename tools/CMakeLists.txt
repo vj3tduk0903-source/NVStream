@@ -41,9 +41,9 @@ target_link_libraries(audio-info
 )
 target_compile_options(audio-info PRIVATE ${SUNSHINE_COMPILE_OPTIONS})
 
-add_executable(sunshinesvc sunshinesvc.cpp)
-target_link_libraries(sunshinesvc
+add_executable(nvstreamsvc nvstreamsvc.cpp)
+target_link_libraries(nvstreamsvc
         ${CMAKE_THREAD_LIBS_INIT}
         wtsapi32
         ${PLATFORM_LIBRARIES})
-target_compile_options(sunshinesvc PRIVATE ${SUNSHINE_COMPILE_OPTIONS})
+target_compile_options(nvstreamsvc PRIVATE ${SUNSHINE_COMPILE_OPTIONS})

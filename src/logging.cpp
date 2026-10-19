@@ -138,7 +138,7 @@ namespace logging {
         android_priority = ANDROID_LOG_UNKNOWN;
         break;
     }
-    __android_log_print(android_priority, "Sunshine", "%s", message.c_str());
+    __android_log_print(android_priority, "NVStream", "%s", message.c_str());
   }
 
   // custom sink backend for android

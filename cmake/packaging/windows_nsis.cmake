@@ -18,11 +18,11 @@ SET(CPACK_NSIS_EXTRA_INSTALL_COMMANDS
         IfSilent +3 0
         nsExec::ExecToLog \
           'powershell -ExecutionPolicy Bypass \
-          -File \\\"$INSTDIR\\\\scripts\\\\sunshine-setup.ps1\\\" -Action install'
+          -File \\\"$INSTDIR\\\\scripts\\\\nvstream-setup.ps1\\\" -Action install'
         Goto +2
         nsExec::ExecToLog \
           'powershell -ExecutionPolicy Bypass \
-          -File \\\"$INSTDIR\\\\scripts\\\\sunshine-setup.ps1\\\" -Action install -Silent'
+          -File \\\"$INSTDIR\\\\scripts\\\\nvstream-setup.ps1\\\" -Action install -Silent'
         install_done:
         ")
 
@@ -33,7 +33,7 @@ set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS
         ${NSIS_LOGSET_COMMAND}
         nsExec::ExecToLog \
           'powershell -ExecutionPolicy Bypass \
-          -File \\\"$INSTDIR\\\\scripts\\\\sunshine-setup.ps1\\\" -Action uninstall'
+          -File \\\"$INSTDIR\\\\scripts\\\\nvstream-setup.ps1\\\" -Action uninstall'
         MessageBox MB_YESNO|MB_ICONQUESTION \
           'Do you want to remove $INSTDIR (this includes the configuration, cover images, and settings)?' \
           /SD IDNO IDNO no_delete
