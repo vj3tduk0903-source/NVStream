@@ -34,8 +34,8 @@ jobs:
         shell: pwsh
         run: |
           if ([string]::IsNullOrWhiteSpace("${{ inputs.release_version }}")) {
-            $sha = "${{ github.sha }}".Substring(0, 7)
-            $version = "2026.10.$sha"
+            # MSI (WiX) yêu cầu version 4 phần #.#.#.#; dùng ngày làm patch cho unique
+            $version = "2026.10.$((Get-Date -Format 'HHmm'))"
           }
           else {
             $version = "${{ inputs.release_version }}"
