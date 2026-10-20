@@ -10,8 +10,8 @@
 
 namespace {
 
-  const auto sunshine_application_profile_name = L"NVStreamStream";
-  const auto sunshine_application_path = L"sunshine.exe";
+  const auto sunshine_application_profile_name = L"NVStream";
+  const auto sunshine_application_path = L"NVStream.exe";
 
   void nvapi_error_message(NvAPI_Status status) {
     NvAPI_ShortString message = {};

@@ -228,9 +228,9 @@ function Invoke-NVStreamIfExist {
         [string]$Emoji = "🔧"
     )
 
-    $SunshinePath = Join-Path $RootDir "NVStream.exe"
+    $NVStreamPath = Join-Path $RootDir "NVStream.exe"
     return Invoke-ExecutableIfExist `
-        -ExecutablePath $SunshinePath `
+        -ExecutablePath $NVStreamPath `
         -Arguments $Arguments `
         -Description $Description `
         -Emoji $Emoji `

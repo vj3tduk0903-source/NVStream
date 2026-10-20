@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.24)
 
 project(NVStream VERSION 0.0.0
         DESCRIPTION "Self-hosted game stream host for Moonlight"
-        HOMEPAGE_URL "https://github.com/local/nvstream")
+        HOMEPAGE_URL "https://github.com/vj3tduk0903-source/NVStream")
 
 # Minimum separately installed Virtual HID Broker version supported by this build.
 set(LIBVIRTUALHID_MINIMUM_VERSION "2026.914.1218.10")

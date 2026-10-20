@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-sunshine">
     <div class="container-fluid">
-      <span class="navbar-brand" title="Sunshine">
+      <span class="navbar-brand" title="NVStream">
         <img src="/images/logo-nvstream-45.png" height="45" alt="NVStream">
       </span>
       <ThemeToggle/>

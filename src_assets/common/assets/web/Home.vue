@@ -201,10 +201,23 @@
           console.error('Failed to fetch permission status:', e);
         }
         console.log("Version: ", this.version.version)
-        this.githubVersion = new SunshineVersion(await fetch("https://api.github.com/repos/LizardByte/Sunshine/releases/latest").then((r) => r.json()), null);
-        console.log("GitHub Version: ", this.githubVersion.version)
-        this.preReleaseVersion = new SunshineVersion((await fetch("https://api.github.com/repos/LizardByte/Sunshine/releases").then((r) => r.json())).find(release => release.prerelease), null);
-        console.log("Pre-Release Version: ", this.preReleaseVersion.version)
+        // NVStream không publish release trên GitHub, nên bỏ qua im lặng nếu repo không có release
+        // (nếu không, bảng so sánh phiên bản sẽ so với bản Sunshine của upstream và báo sai).
+        try {
+          const latestRelease = await fetch("https://api.github.com/repos/vj3tduk0903-source/NVStream/releases/latest").then((r) => r.json());
+          if (latestRelease && latestRelease.tag_name) {
+            this.githubVersion = new SunshineVersion(latestRelease, null);
+            console.log("GitHub Version: ", this.githubVersion.version)
+          }
+          const releases = await fetch("https://api.github.com/repos/vj3tduk0903-source/NVStream/releases").then((r) => r.json());
+          const preRelease = Array.isArray(releases) ? releases.find(release => release.prerelease) : null;
+          if (preRelease) {
+            this.preReleaseVersion = new SunshineVersion(preRelease, null);
+            console.log("Pre-Release Version: ", this.preReleaseVersion.version)
+          }
+        } catch (e) {
+          console.error("Failed to fetch NVStream releases:", e);
+        }
 
         // Read the broker version on both platforms to identify development builds.
         if (this.platform === 'windows' || this.platform === 'macos') {

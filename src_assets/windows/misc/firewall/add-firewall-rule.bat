@@ -1,10 +1,10 @@
 @echo off
 
-rem Get sunshine root directory
+rem Get NVStream root directory
 for %%I in ("%~dp0\..") do set "ROOT_DIR=%%~fI"
 
 set RULE_NAME=NVStream
-set PROGRAM_BIN="%ROOT_DIR%\sunshine.exe"
+set PROGRAM_BIN="%ROOT_DIR%\NVStream.exe"
 
 rem Add the rule
 netsh advfirewall firewall add rule name=%RULE_NAME% dir=in action=allow protocol=tcp program=%PROGRAM_BIN% enable=yes
