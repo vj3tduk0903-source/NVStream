@@ -785,6 +785,7 @@
           this.version = new SunshineVersion(null, r.version);
         });
 
+      // NVStream chưa tự publish tài liệu và release riêng, nên luôn dùng tài liệu upstream.
       fetch("https://api.github.com/repos/LizardByte/Sunshine/releases/latest")
         .then((r) => r.json())
         .then((r) => this.githubVersion = new SunshineVersion(r, null))
